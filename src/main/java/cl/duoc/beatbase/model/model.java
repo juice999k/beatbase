@@ -1,4 +1,4 @@
-package com.duoc.beatbase.model;
+package cl.duoc.beatbase.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "artista")
-public class model {
+@Table(name = "artistas")
+public class artista {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,8 +1,7 @@
-package com.duoc.beatbase.model;
+package cl.duoc.beatbase.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,23 +10,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "artista")
-public class model {
+@Table(name = "proyectos")
+
+public class proyecto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotBlank
-    private String nombre;
+    private String titulo;
 
     @NotBlank
-    private int edad ;
+    private String tipo; 
 
-    @NotBlank
-    private String sexo;
+    private int anioLanzamiento;
 
-    @NotNull
-    private String genero;
+    private String discografica;
 
 }

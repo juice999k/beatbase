@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "artistas")
-public class artista {
+public class Artista {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

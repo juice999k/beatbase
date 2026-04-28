@@ -2,6 +2,7 @@ package cl.duoc.beatbase.service;
 
 import cl.duoc.beatbase.model.Artista;
 import cl.duoc.beatbase.repository.ArtistaRepository;
+import cl.duoc.beatbase.dto.ArtistaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -34,4 +35,13 @@ public class ArtistaService {
     public void deleteArtista(int id) {
         artistaRepository.deleteById(id);
     }
+
+    public List<ArtistaProyectosDTO> getArtistasConProyectos() {
+    return artistaRepository.findAll().stream()
+            .map(a -> new ArtistaProyectosDTO(
+                    a.getNombre(),
+                    a.getProyectos()
+                    ))
+            .toList(); 
+}
 }

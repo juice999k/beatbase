@@ -34,4 +34,7 @@ public class Artista {
     @JoinColumn(name = "biografia_id")
     private biografia Biografia;
 
+    @OneToMany(mappedBy = "artista")
+    private List<Proyecto> proyectos;
+
 }

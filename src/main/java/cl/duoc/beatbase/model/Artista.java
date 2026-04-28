@@ -31,6 +31,7 @@ public class Artista {
     private String genero;
 
     @OneToOne()
-    private biografia biografia;
+    @JoinColumn(name = "biografia_id")
+    private biografia Biografia;
 
 }

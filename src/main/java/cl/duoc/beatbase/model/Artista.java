@@ -40,9 +40,9 @@ public class Artista {
 
     @OneToOne()
     @JoinColumn(name = "biografia_id")
-    private String biografia;
+    private Biografia biografia;
 
     @OneToMany(mappedBy = "artista")
-    private List<Proyecto> proyectos;
+    private List<Proyecto> proyectos; 
 
 }

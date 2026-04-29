@@ -1,6 +1,15 @@
 package cl.duoc.beatbase.model;
 
-import jakarta.persistence.*;
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -21,8 +30,7 @@ public class Artista {
     @NotBlank
     private String nombre;
 
-    @NotBlank
-    private int edad ;
+    private int edad;
 
     @NotBlank
     private String sexo;
@@ -32,7 +40,7 @@ public class Artista {
 
     @OneToOne()
     @JoinColumn(name = "biografia_id")
-    private biografia Biografia;
+    private String biografia;
 
     @OneToMany(mappedBy = "artista")
     private List<Proyecto> proyectos;

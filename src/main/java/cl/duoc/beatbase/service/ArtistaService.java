@@ -2,10 +2,11 @@ package cl.duoc.beatbase.service;
 
 import cl.duoc.beatbase.model.Artista;
 import cl.duoc.beatbase.repository.ArtistaRepository;
-import cl.duoc.beatbase.dto.ArtistaDTO;
+import cl.duoc.beatbase.dto.ArtistaProyectosDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+
 
 @Service
 public class ArtistaService {
@@ -36,12 +37,14 @@ public class ArtistaService {
         artistaRepository.deleteById(id);
     }
 
-    public List<ArtistaProyectosDTO> getArtistasConProyectos() {
+public List<ArtistaProyectosDTO> getArtistasConProyectos() {
     return artistaRepository.findAll().stream()
             .map(a -> new ArtistaProyectosDTO(
-                    a.getNombre(),
-                    a.getProyectos()
-                    ))
+                    a.getNombre(), 
+                    a.getProyectos().stream()
+                        .map(p -> p.getTitulo())
+                        .toList()
+            ))
             .toList(); 
 }
 }

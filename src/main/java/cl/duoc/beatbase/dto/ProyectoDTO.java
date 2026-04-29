@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProyectoDTO {
 
-    private Integer id;
     private String titulo;
     private String tipo; 
     private int anioLanzamiento;
-    private String discografica;
 }

@@ -9,10 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ArtistaDTO {
 
-    private Integer id;
     private String nombre;
-    private int edad ;
-    private String sexo;
     private String genero;
-    private biografia Biografia;
+    private String biografia;
 }

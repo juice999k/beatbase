@@ -2,6 +2,7 @@ package cl.duoc.beatbase.controller;
 
 import cl.duoc.beatbase.model.Artista;
 import cl.duoc.beatbase.service.ArtistaService;
+import cl.duoc.beatbase.dto.ArtistaProyectosDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

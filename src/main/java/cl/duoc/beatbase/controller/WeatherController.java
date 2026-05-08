@@ -2,6 +2,7 @@ package cl.duoc.beatbase.controller;
 
 import cl.duoc.beatbase.dto.WeatherDTO;
 import cl.duoc.beatbase.controller.WeatherController;
+import cl.duoc.beatbase.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

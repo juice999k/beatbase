@@ -61,4 +61,14 @@ public class ArtistaController {
         artistaService.deleteArtista(id);
         return ResponseEntity.noContent().build();
     }
+    
+    public ArtistaController(ArtistaService artistaService) {
+        this.artistaService = artistaService;
+    }
+
+    @GetMapping("/proyectos")
+    public List<ArtistaProyectosDTO> listarArtistasConProyectos() {
+        return artistaService.getArtistasConProyectos();
+    }
+
 }

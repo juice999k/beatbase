@@ -1,0 +1,59 @@
+{
+  "info": {
+    "name": "BeatBase API",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Clima (Open-Meteo)",
+      "item": [
+        {
+          "name": "Clima actual - Santiago (default)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/clima",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "clima"]
+            },
+            "description": "Devuelve el clima actual de Santiago de Chile usando la API Open-Meteo (lat=-33.45, lon=-70.65).\n\nEjemplo de respuesta:\n{\n  \"latitude\": -33.45,\n  \"longitude\": -70.65,\n  \"current\": {...}\n}"
+          },
+          "response": []
+        },
+        {
+          "name": "Clima actual - coordenadas personalizadas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/clima?lat=-41.47&lon=-72.94",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "clima"],
+              "query": [
+                {
+                  "key": "lat",
+                  "value": "-41.47",
+                  "description": "Latitud (ej: -41.47 para Puerto Montt)"
+                },
+                {
+                  "key": "lon",
+                  "value": "-72.94",
+                  "description": "Longitud (ej: -72.94 para Puerto Montt)"
+                }
+              ]
+            },
+            "description": "Devuelve el clima actual para coordenadas personalizadas. Este ejemplo usa Puerto Montt. Puedes cambiar lat y lon por cualquier ciudad del mundo."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ]
+}

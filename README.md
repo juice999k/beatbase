@@ -148,3 +148,7 @@ El proyecto expone los siguientes endpoints para interactuar con la base de dato
 * **Eliminar proyecto**
     * **Método:** `DELETE`
     * **URL:** `http://localhost:8080/api/proyectos/{id}`
+
+## Autores
+Martin Sandoval
+Lukas Vicker

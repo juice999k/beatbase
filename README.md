@@ -150,5 +150,8 @@ El proyecto expone los siguientes endpoints para interactuar con la base de dato
     * **URL:** `http://localhost:8080/api/proyectos/{id}`
 
 ## Autores
-Martin Sandoval
-Lukas Vicker
+
+- **Martin Sandoval**
+- **Correo:** mart.sandovalb@duocuc.cl
+- **Lukas Vicker**
+- **Correo:** lu.vicker@duocuc.cl

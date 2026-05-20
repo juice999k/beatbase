@@ -15,25 +15,31 @@ public class ArtistaService {
     private ArtistaRepository artistaRepository;
 
     public List<Artista> getArtistas() {
+        System.out.println("[ArtistaService] Obteniendo todos los artistas");
         return artistaRepository.findAll();
     }
 
     public Artista saveArtista(Artista artista) {
+        System.out.println("[ArtistaService] Guardando artista: " + artista.getNombre());
         return artistaRepository.save(artista);
     }
 
     public Artista getArtistaId(int id) {
+        System.out.println("[ArtistaService] Buscando artista con id: " + id);
         return artistaRepository.findById(id).orElse(null);
     }
 
     public Artista updateArtista(Artista artista) {
+        System.out.println("[ArtistaService] Actualizando artista con id: " + artista.getId());
         if (!artistaRepository.existsById(artista.getId())) {
-            return null;
-        }
-        return artistaRepository.save(artista);
+        System.out.println("[ArtistaService] Artista no encontrado con id: " + artista.getId());
+        return null;
+    }
+    return artistaRepository.save(artista);
     }
 
     public void deleteArtista(int id) {
+        System.out.println("[ArtistaService] Eliminando artista con id: " + id);
         artistaRepository.deleteById(id);
     }
 

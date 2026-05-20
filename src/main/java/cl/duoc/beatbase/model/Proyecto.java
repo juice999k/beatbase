@@ -36,6 +36,7 @@ public class Proyecto {
 
     @ManyToOne
     @JoinColumn(name = "artista_id")
+    @JsonIgnore
     private Artista artista;
 
 }

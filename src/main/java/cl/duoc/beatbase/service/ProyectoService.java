@@ -1,6 +1,8 @@
 package cl.duoc.beatbase.service;
 
+import cl.duoc.beatbase.model.Artista;
 import cl.duoc.beatbase.model.Proyecto;
+import cl.duoc.beatbase.repository.ArtistaRepository;
 import cl.duoc.beatbase.repository.ProyectoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,15 +15,22 @@ public class ProyectoService {
     @Autowired
     private ProyectoRepository proyectoRepository;
 
-public List<Proyecto> getProyectos() {
+    @Autowired
+    private ArtistaRepository artistaRepository;
+
+    public List<Proyecto> getProyectos() {
         System.out.println("[ProyectoService] Obteniendo todos los proyectos");
         return proyectoRepository.findAll();
     }
 
-    public Proyecto saveProyecto(Proyecto proyecto) {
-        System.out.println("[ProyectoService] Guardando un nuevo proyecto");
-        return proyectoRepository.save(proyecto);
+  public Proyecto saveProyecto(Proyecto proyecto) {
+    System.out.println("[ProyectoService] Guardando un nuevo proyecto");
+    if (proyecto.getArtistaId() != null) {
+        Artista artista = artistaRepository.findById(proyecto.getArtistaId()).orElse(null);
+        proyecto.setArtista(artista);
     }
+    return proyectoRepository.save(proyecto);
+}
 
     public Proyecto getProyectoId(int id) {
         System.out.println("[ProyectoService] Buscando proyecto con id: " + id);

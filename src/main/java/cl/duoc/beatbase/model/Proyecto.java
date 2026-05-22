@@ -7,12 +7,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,10 +38,14 @@ public class Proyecto {
     private int anioLanzamiento;
 
     private String discografica;
+    
+    @Transient
+    private Integer artistaId;
+
 
     @ManyToOne
     @JoinColumn(name = "artista_id")
-    @JsonIgnore
+    @JsonIgnoreProperties({"proyectos", "biografia"})
     private Artista artista;
 
 }

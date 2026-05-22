@@ -20,138 +20,193 @@ Incluye integración con Open-Meteo para consulta de clima en tiempo real.
 ## Cómo ejecutar
 
 1. Clonar el repositorio:
+   ```
    git clone <url-del-repo>
+   ```
 
 2. Configurar la base de datos en `src/main/resources/application.properties`:
+   ```
    spring.datasource.url=jdbc:mysql://localhost:3306/beatbase
    spring.datasource.username=root
    spring.datasource.password=
+   ```
 
 3. Ejecutar el proyecto:
-   ./mvnw spring-boot:run
+   ```
+   .\mvnw spring-boot:run
+   ```
 
-4. Tambien puedes iniciar si tienes el Extension Pack for Java y le das click derecho y run java al archivo BeatbaseApplication.java
+4. También puedes iniciarlo desde Visual Studio Code con el Extension Pack for Java: click derecho sobre `BeatbaseApplication.java` → Run Java.
 
-5. La API estará disponible en: http://localhost:8080
+5. La API estará disponible en: `http://localhost:8080`
+
+---
+
+## Orden de creación de datos
+
+Para vincular correctamente las entidades, seguir este orden:
+
+1. Crear una **biografía** → `POST /api/biografias`
+2. Crear un **artista** con el `id` de la biografía → `POST /api/artistas`
+3. Crear un **proyecto** con el `id` del artista → `POST /api/proyectos`
+
+---
 
 ## Endpoints disponibles
 
-
-El proyecto expone los siguientes endpoints para interactuar con la base de datos de BeatBase. Las peticiones `POST` y `PUT` requieren enviar un JSON en el cuerpo (`Body`) de la solicitud.
+El proyecto expone los siguientes endpoints. Las peticiones `POST` y `PUT` requieren enviar un JSON en el cuerpo de la solicitud.
 
 ---
 
 ### 1. Artistas (`/api/artistas`)
 
-* **Obtener todos los artistas**
-    * **Método:** `GET`
-    * **URL:** `http://localhost:8080/api/artistas`
-* **Buscar artista por ID**
-    * **Método:** `GET`
-    * **URL:** `http://localhost:8080/api/artistas/{id}`
-* **Crear un artista**
-    * **Método:** `POST`
-    * **URL:** `http://localhost:8080/api/artistas`
-    * **JSON Body:**
-        ```json
-        {
-          "nombre": "Michael Jackson",
-          "edad": 67,
-          "sexo": "Masculino",
-          "genero": "Pop"
-        }
-        ```
-* **Actualizar un artista**
-    * **Método:** `PUT`
-    * **URL:** `http://localhost:8080/api/artistas/{id}` *(Nota: Si tu controlador no usa ID en la URL para Artista, remover el /{id} al probar)*
-    * **JSON Body:**
-        ```json
-        {
-          "id": 1,
-          "nombre": "Michael Jackson (Editado)",
-          "edad": 50,
-          "sexo": "Masculino",
-          "genero": "Rock"
-        }
-        ```
-* **Eliminar un artista**
-    * **Método:** `DELETE`
-    * **URL:** `http://localhost:8080/api/artistas/{id}`
+**Obtener todos los artistas**
+- Método: `GET`
+- URL: `http://localhost:8080/api/artistas`
+
+**Buscar artista por ID**
+- Método: `GET`
+- URL: `http://localhost:8080/api/artistas/{id}`
+
+**Artistas con sus proyectos (DTO)**
+- Método: `GET`
+- URL: `http://localhost:8080/api/artistas/proyectos`
+
+**Crear un artista** (requiere biografía creada previamente)
+- Método: `POST`
+- URL: `http://localhost:8080/api/artistas`
+- Body:
+    ```json
+    {
+      "nombre": "Michael Jackson",
+      "edad": 50,
+      "sexo": "Masculino",
+      "genero": "Pop",
+      "biografia": {
+        "id": 1
+      }
+    }
+    ```
+
+**Actualizar un artista**
+- Método: `PUT`
+- URL: `http://localhost:8080/api/artistas/{id}`
+- Body:
+    ```json
+    {
+      "nombre": "Michael Jackson (Editado)",
+      "edad": 55,
+      "sexo": "Masculino",
+      "genero": "Rock",
+      "biografia": {
+        "id": 1
+      }
+    }
+    ```
+
+**Eliminar un artista**
+- Método: `DELETE`
+- URL: `http://localhost:8080/api/artistas/{id}`
 
 ---
 
 ### 2. Biografías (`/api/biografias`)
 
-* **Obtener todas las biografías**
-    * **Método:** `GET`
-    * **URL:** `http://localhost:8080/api/biografias`
-* **Buscar biografía por ID**
-    * **Método:** `GET`
-    * **URL:** `http://localhost:8080/api/biografias/{id}`
-* **Crear una biografía**
-    * **Método:** `POST`
-    * **URL:** `http://localhost:8080/api/biografias`
-    * **JSON Body:** *(Corregido sin la línea del id huérfano)*
-        ```json
-        {
-          "descripcion": "Michael Joseph Jackson (1958-2009) fue un cantante, compositor y bailarín estadounidense, universalmente conocido como el «Rey del Pop»..."
-        }
-        ```
-* **Actualizar biografía**
-    * **Método:** `PUT`
-    * **URL:** `http://localhost:8080/api/biografias/{id}`
-    * **JSON Body:**
-        ```json
-        {
-          "id": 1,
-          "descripcion": "Biografía actualizada: Músico, compositor y multiinstrumentista estadounidense de gran trayectoria."
-        }
-        ```
-* **Eliminar biografía**
-    * **Método:** `DELETE`
-    * **URL:** `http://localhost:8080/api/biografias/{id}`
+**Obtener todas las biografías**
+- Método: `GET`
+- URL: `http://localhost:8080/api/biografias`
+
+**Buscar biografía por ID**
+- Método: `GET`
+- URL: `http://localhost:8080/api/biografias/{id}`
+
+**Crear una biografía**
+- Método: `POST`
+- URL: `http://localhost:8080/api/biografias`
+- Body:
+    ```json
+    {
+      "descripcion": "Michael Joseph Jackson (1958-2009) fue un cantante, compositor y bailarín estadounidense, universalmente conocido como el Rey del Pop."
+    }
+    ```
+
+**Actualizar biografía**
+- Método: `PUT`
+- URL: `http://localhost:8080/api/biografias/{id}`
+- Body:
+    ```json
+    {
+      "descripcion": "Biografía actualizada: Músico, compositor y multiinstrumentista estadounidense de gran trayectoria."
+    }
+    ```
+
+**Eliminar biografía**
+- Método: `DELETE`
+- URL: `http://localhost:8080/api/biografias/{id}`
 
 ---
 
 ### 3. Proyectos (`/api/proyectos`)
 
-* **Obtener todos los proyectos**
-    * **Método:** `GET`
-    * **URL:** `http://localhost:8080/api/proyectos`
-* **Buscar proyecto por ID**
-    * **Método:** `GET`
-    * **URL:** `http://localhost:8080/api/proyectos/{id}`
-* **Crear proyecto**
-    * **Método:** `POST`
-    * **URL:** `http://localhost:8080/api/proyectos`
-    * **JSON Body:**
-        ```json
-        {
-          "titulo": "Thriller",
-          "tipo": "Álbum de estudio",
-          "anioLanzamiento": 1982,
-          "discografica": "Epic Records"
-        }
-        ```
-* **Actualizar proyecto**
-    * **Método:** `PUT`
-    * **URL:** `http://localhost:8080/api/proyectos/{id}`
-    * **JSON Body:**
-        ```json
-        {
-          "titulo": "Thriller (Remaster)",
-          "tipo": "Álbum",
-          "anioLanzamiento": 2021,
-          "discografica": "Universal Music"
-        }
-        ```
-* **Eliminar proyecto**
-    * **Método:** `DELETE`
-    * **URL:** `http://localhost:8080/api/proyectos/{id}`
+**Obtener todos los proyectos**
+- Método: `GET`
+- URL: `http://localhost:8080/api/proyectos`
+
+**Buscar proyecto por ID**
+- Método: `GET`
+- URL: `http://localhost:8080/api/proyectos/{id}`
+
+**Crear proyecto** (requiere artista creado previamente)
+- Método: `POST`
+- URL: `http://localhost:8080/api/proyectos`
+- Body:
+    ```json
+    {
+      "titulo": "Thriller",
+      "tipo": "Album de estudio",
+      "anioLanzamiento": 1982,
+      "discografica": "Epic Records",
+      "artista": {
+        "id": 1
+      }
+    }
+    ```
+
+**Actualizar proyecto**
+- Método: `PUT`
+- URL: `http://localhost:8080/api/proyectos/{id}`
+- Body:
+    ```json
+    {
+      "titulo": "Thriller (Remaster)",
+      "tipo": "Album",
+      "anioLanzamiento": 2021,
+      "discografica": "Universal Music",
+      "artista": {
+        "id": 1
+      }
+    }
+    ```
+
+**Eliminar proyecto**
+- Método: `DELETE`
+- URL: `http://localhost:8080/api/proyectos/{id}`
+
+---
+
+### 4. Clima (`/api/v1/clima`)
+
+**Clima actual - Santiago (default)**
+- Método: `GET`
+- URL: `http://localhost:8080/api/v1/clima`
+
+**Clima actual - coordenadas personalizadas**
+- Método: `GET`
+- URL: `http://localhost:8080/api/v1/clima?lat=-41.47&lon=-72.94`
+
+---
 
 ## Autores
 
-- **Martin Sandoval**
-- **Correo:** mart.sandovalb@duocuc.cl
-- **Lukas Vicker**
-- **Correo:** lu.vicker@duocuc.cl
+- **Martin Sandoval** - mart.sandovalb@duocuc.cl
+- **Lukas Vicker** - lu.vicker@duocuc.cl

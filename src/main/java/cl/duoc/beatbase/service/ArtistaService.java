@@ -1,7 +1,9 @@
 package cl.duoc.beatbase.service;
 
 import cl.duoc.beatbase.model.Artista;
+import cl.duoc.beatbase.model.Biografia;
 import cl.duoc.beatbase.repository.ArtistaRepository;
+import cl.duoc.beatbase.repository.BiografiaRepository;
 import cl.duoc.beatbase.dto.ArtistaProyectosDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ public class ArtistaService {
 
     @Autowired
     private ArtistaRepository artistaRepository;
+    @Autowired
+    private BiografiaRepository biografiaRepository;
 
     public List<Artista> getArtistas() {
         System.out.println("[ArtistaService] Obteniendo todos los artistas");
@@ -20,9 +24,13 @@ public class ArtistaService {
     }
 
     public Artista saveArtista(Artista artista) {
-        System.out.println("[ArtistaService] Guardando artista: " + artista.getNombre());
-        return artistaRepository.save(artista);
+    System.out.println("[ArtistaService] Guardando artista: " + artista.getNombre());
+    if (artista.getBiografia() != null && artista.getBiografia().getId() != null) {
+        Biografia bio = biografiaRepository.findById(artista.getBiografia().getId()).orElse(null);
+        artista.setBiografia(bio);
     }
+    return artistaRepository.save(artista);
+}
 
     public Artista getArtistaId(int id) {
         System.out.println("[ArtistaService] Buscando artista con id: " + id);

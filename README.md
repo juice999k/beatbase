@@ -83,8 +83,8 @@ La API está protegida con JSON Web Tokens (JWT). Para usar los endpoints de art
 - Body:
 ```json
     {
-      "username": "admin",
-      "password": "admin123"
+      "username": "martin",
+      "password": "hola1234"
     }
 ```
 - Por defecto, todo usuario registrado queda con rol `ROLE_USER`.
@@ -125,6 +125,21 @@ Authorization: Bearer <token>
 ## Pruebas funcionales
  
 El proyecto incluye pruebas funcionales en `src/test/java/cl/duoc/beatbase/ArtistaControllerTest.java`, usando JUnit 5 y Mockito para simular el servicio sin necesidad de base de datos real.
+
+
+### Ejecución de pruebas
+
+Ejecutar solo el test principal (recomendado para clase):
+
+```bash
+.\mvnw.cmd -Dtest=ArtistaControllerTest test
+```
+
+Ejecutar todas las pruebas existentes en el proyecto:
+
+```bash
+.\mvnw.cmd test
+```
 
 ## Orden de creación de datos
 

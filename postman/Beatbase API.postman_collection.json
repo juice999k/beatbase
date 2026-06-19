@@ -1,542 +1,574 @@
 {
-	"info": {
-		"_postman_id": "afb7d6fc-f83f-4b00-b82b-413457168199",
-		"name": "Beatbase API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Artistas",
-			"item": [
-				{
-					"name": "Obtener todos los artistas",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/artistas",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"artistas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Buscar artista por id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/artistas/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"artistas",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Artistas con sus proyectos (DTO)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/artistas/proyectos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"artistas",
-								"proyectos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crear un artista (con biografia vinculada)",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"nombre\": \"Michael Jackson\",\n  \"edad\": 50,\n  \"sexo\": \"Masculino\",\n  \"genero\": \"Pop\",\n  \"biografia\": {\n    \"id\": 1\n  }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/artistas",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"artistas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Actualizar un artista",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"nombre\": \"Michael Jackson (Editado)\",\n  \"edad\": 55,\n  \"sexo\": \"Masculino\",\n  \"genero\": \"Rock\",\n  \"biografia\": {\n    \"id\": 1\n  }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/artistas/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"artistas",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminar un artista",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/artistas/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"artistas",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Biografias",
-			"item": [
-				{
-					"name": "Obtener todas las biografias",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/biografias",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"biografias"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Buscar biografia por id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/biografias/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"biografias",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crear una biografia",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJtYXJ0aW4iLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNzgwNjgxMzA2LCJleHAiOjE3ODA3Njc3MDZ9.Z-IvcubkpD7Nwfl-FyamPoL7NzmgRqjtI-HX7qkZShYYE88kF_ATLu5JQe3tsC31",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"descripcion\": \"Michael Joseph Jackson (1958-2009) fue un cantante, compositor y bailarin estadounidense, universalmente conocido como el Rey del Pop.\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/biografias",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"biografias"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Actualizar biografia",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"descripcion\": \"Biografia actualizada: Musico, compositor y multiinstrumentista estadounidense de gran trayectoria.\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/biografias/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"biografias",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminar biografia",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/biografias/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"biografias",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Proyectos",
-			"item": [
-				{
-					"name": "Obtener todos los proyectos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/proyectos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"proyectos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Buscar proyecto por id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/proyectos/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"proyectos",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crear proyecto (vinculado a artista)",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"titulo\": \"Thriller\",\n  \"tipo\": \"Album de estudio\",\n  \"anioLanzamiento\": 1982,\n  \"discografica\": \"Epic Records\",\n  \"artistaId\": 1\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/proyectos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"proyectos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Actualizar proyecto",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"titulo\": \"Thriller (Remaster)\",\n  \"tipo\": \"Album\",\n  \"anioLanzamiento\": 2021,\n  \"discografica\": \"Universal Music\",\n  \"artista\": {\n    \"id\": 1\n  }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/proyectos/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"proyectos",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminar proyecto",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/proyectos/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"proyectos",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Clima",
-			"item": [
-				{
-					"name": "Clima actual - Santiago (default)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/clima",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"clima"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Clima actual - coordenadas personalizadas",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/clima?lat=-41.47&lon=-72.94",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"clima"
-							],
-							"query": [
-								{
-									"key": "lat",
-									"value": "-41.47",
-									"description": "Latitud (ej: -41.47 para Puerto Montt)"
-								},
-								{
-									"key": "lon",
-									"value": "-72.94",
-									"description": "Longitud (ej: -72.94 para Puerto Montt)"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Autenticacion",
-			"item": [
-				{
-					"name": "Registro",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"username\": \"martin\",\r\n  \"password\": \"hola1234\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/api/v1/auth/register",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"auth",
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"username\": \"martin\",\r\n  \"password\": \"hola1234\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/api/v1/auth/login",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	]
+  "info": {
+    "_postman_id": "349465e6-1785-4b78-b3ea-ad866db1c3a9",
+    "name": "Beatbase API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "55097209",
+    "_collection_link": "https://go.postman.co/collection/55097209-349465e6-1785-4b78-b3ea-ad866db1c3a9?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Artistas",
+      "item": [
+        {
+          "name": "Obtener todos los artistas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/artistas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "artistas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar artista por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/artistas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "artistas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Artistas con sus proyectos (DTO)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/artistas/proyectos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "artistas",
+                "proyectos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear un artista (con biografia vinculada)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Michael Jackson\",\n  \"edad\": 50,\n  \"sexo\": \"Masculino\",\n  \"genero\": \"Pop\",\n  \"biografia\": {\n    \"id\": 1\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/artistas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "artistas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar un artista",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Michael Jackson (Editado)\",\n  \"edad\": 55,\n  \"sexo\": \"Masculino\",\n  \"genero\": \"Rock\",\n  \"biografia\": {\n    \"id\": 1\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/artistas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "artistas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar un artista",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/artistas/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "artistas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Biografias",
+      "item": [
+        {
+          "name": "Obtener todas las biografias",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/biografias",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "biografias"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar biografia por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/biografias/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "biografias",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear una biografia",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJtYXJ0aW4iLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNzgwNjgxMzA2LCJleHAiOjE3ODA3Njc3MDZ9.Z-IvcubkpD7Nwfl-FyamPoL7NzmgRqjtI-HX7qkZShYYE88kF_ATLu5JQe3tsC31",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"descripcion\": \"Michael Joseph Jackson (1958-2009) fue un cantante, compositor y bailarin estadounidense, universalmente conocido como el Rey del Pop.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/biografias",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "biografias"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar biografia",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"descripcion\": \"Biografia actualizada: Musico, compositor y multiinstrumentista estadounidense de gran trayectoria.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/biografias/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "biografias",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar biografia",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/biografias/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "biografias",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Proyectos",
+      "item": [
+        {
+          "name": "Obtener todos los proyectos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/proyectos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "proyectos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar proyecto por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/proyectos/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "proyectos",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear proyecto (vinculado a artista)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Thriller\",\n  \"tipo\": \"Album de estudio\",\n  \"anioLanzamiento\": 1982,\n  \"discografica\": \"Epic Records\",\n  \"artistaId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/proyectos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "proyectos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar proyecto",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Thriller (Remaster)\",\n  \"tipo\": \"Album\",\n  \"anioLanzamiento\": 2021,\n  \"discografica\": \"Universal Music\",\n  \"artista\": {\n    \"id\": 1\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/proyectos/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "proyectos",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar proyecto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/proyectos/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "proyectos",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Clima",
+      "item": [
+        {
+          "name": "Clima actual - Santiago (default)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/clima",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "clima"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Clima actual - coordenadas personalizadas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/clima?lat=-41.47&lon=-72.94",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "clima"
+              ],
+              "query": [
+                {
+                  "key": "lat",
+                  "value": "-41.47",
+                  "description": "Latitud (ej: -41.47 para Puerto Montt)"
+                },
+                {
+                  "key": "lon",
+                  "value": "-72.94",
+                  "description": "Longitud (ej: -72.94 para Puerto Montt)"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Autenticacion",
+      "item": [
+        {
+          "name": "Registro",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"martin\",\r\n  \"password\": \"hola1234\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/api/v1/auth/register",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Registro Admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"hola1234\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/api/v1/auth/register-admin",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register-admin"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"hola1234\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/api/v1/auth/login",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
 }

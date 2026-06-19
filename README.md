@@ -11,11 +11,16 @@ Incluye integración con Open-Meteo para consulta de clima en tiempo real.
 - Maven
 - MySQL (Laragon)
 - WebClient (llamada a API externa)
+- Spring Security
+- JWT
+- Docker
+- Swagger
 
 ## Requisitos previos
 
 - Java 21 instalado
 - Laragon corriendo con MySQL activo
+- Docker Desktop instalado en la maquina
 
 ## Cómo ejecutar
 
@@ -41,6 +46,85 @@ Incluye integración con Open-Meteo para consulta de clima en tiempo real.
 5. La API estará disponible en: `http://localhost:8080`
 
 ---
+
+## Cómo ejecutar con Docker Compose
+ 
+También se puede levantar el proyecto completo (API + MySQL) usando Docker, sin necesidad de tener Laragon ni Java instalado localmente.
+ 
+1. Tener Docker Desktop abierto y corriendo.
+2. Desde la raíz del proyecto, ejecutar:
+```
+   docker-compose up --build
+```
+ 
+3. Esto levanta dos contenedores:
+   - **mysql**: base de datos MySQL 8.4, expuesta en el puerto `3307` de la máquina local (mapeado al `3306` interno del contenedor).
+   - **app**: la API Spring Boot, expuesta en `http://localhost:8080`.
+4. El contenedor `app` espera a que `mysql` esté saludable (`healthcheck`) antes de iniciar, así se evita que la API intente conectarse antes de que la base de datos esté lista.
+5. Para detener y eliminar los contenedores:
+```
+   docker-compose down
+```
+   Si además se quiere borrar la base de datos (volumen persistente):
+```
+   docker-compose down -v
+```
+ 
+---
+
+## Autenticación con JWT
+ 
+La API está protegida con JSON Web Tokens (JWT). Para usar los endpoints de artistas, biografías y proyectos es necesario autenticarse primero.
+ 
+### 1. Registrar un usuario
+ 
+- Método: `POST`
+- URL: `http://localhost:8080/api/v1/auth/register`
+- Body:
+```json
+    {
+      "username": "admin",
+      "password": "admin123"
+    }
+```
+- Por defecto, todo usuario registrado queda con rol `ROLE_USER`.
+### 1.1 Registrar un usuario ADMIN
+ 
+- Método: `POST`
+- URL: `http://localhost:8080/api/v1/auth/register-admin`
+- Body:
+```json
+    {
+      "username": "admin",
+      "password": "admin123"
+    }
+```
+- El `username` y `password` pueden ser cualquier valor; lo que define el rol es el endpoint usado, no el contenido del body.
+- Este endpoint registra el usuario directamente con rol `ROLE_ADMIN`, sin necesidad de modificar la base de datos manualmente. Pensado para crear el usuario administrador inicial del sistema.
+### 2. Iniciar sesión
+ 
+- Método: `POST`
+- URL: `http://localhost:8080/api/v1/auth/login`
+- Body:
+```json
+    {
+      "username": "admin",
+      "password": "admin123"
+    }
+```
+- Respuesta: un JWT válido por 24 horas.
+### 3. Usar el token en las peticiones
+ 
+En cada request a los endpoints protegidos (`/api/artistas`, `/api/biografias`, `/api/proyectos`), agregar el header:
+ 
+```
+Authorization: Bearer <token>
+```
+
+---
+## Pruebas funcionales
+ 
+El proyecto incluye pruebas funcionales en `src/test/java/cl/duoc/beatbase/ArtistaControllerTest.java`, usando JUnit 5 y Mockito para simular el servicio sin necesidad de base de datos real.
 
 ## Orden de creación de datos
 

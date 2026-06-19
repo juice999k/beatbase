@@ -58,6 +58,22 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Usuario registrado exitosamente");
     }
 
+    @PostMapping("/register-admin")
+    public ResponseEntity<String> registerAdmin(@RequestBody AuthRequest request) {
+        if (usuarioRepository.findByUsername(request.getUsername()).isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("El usuario ya existe");
+        }
+ 
+        Usuario usuario = new Usuario();
+        usuario.setUsername(request.getUsername());
+        usuario.setPassword(passwordEncoder.encode(request.getPassword()));
+        usuario.setRole("ROLE_ADMIN");
+        usuarioRepository.save(usuario);
+ 
+        return ResponseEntity.status(HttpStatus.CREATED).body("Usuario ADMIN registrado exitosamente");
+    }
+    
+    
     /**
      * Autentica al usuario y devuelve un JWT válido por 24 horas.
      * El token debe enviarse en el header Authorization de los siguientes requests:

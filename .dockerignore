@@ -1,0 +1,8 @@
+target
+.git
+.github
+.vscode
+test_output.txt
+README.md
+postman
+*.log

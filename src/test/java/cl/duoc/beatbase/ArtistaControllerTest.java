@@ -53,4 +53,69 @@ class ArtistaControllerTest {
         assertEquals("Duki", body.getNombre());
         assertEquals("Trap", body.getGenero());
     }
+    @Test
+    void buscarArtista_retorna200_cuandoExiste() {
+ 
+        Artista artista = new Artista();
+        artista.setId(1);
+        artista.setNombre("Duki");
+        artista.setEdad(27);
+        artista.setSexo("Masculino");
+        artista.setGenero("Trap");
+ 
+        when(artistaService.getArtistaId(1)).thenReturn(artista);
+ 
+        var respuesta = artistaController.getArtistaById(1);
+ 
+        assertNotNull(respuesta);
+        assertEquals(HttpStatus.OK, respuesta.getStatusCode());
+ 
+        var body = respuesta.getBody();
+        assertNotNull(body);
+        assertEquals("Duki", body.getNombre());
+        assertEquals(1, body.getId());
+    }
+ 
+
+    @Test
+    void editarArtista_retorna200_cuandoSeActualizaCorrectamente() {
+ 
+        Artista artistaActualizado = new Artista();
+        artistaActualizado.setId(1);
+        artistaActualizado.setNombre("Duki");
+        artistaActualizado.setEdad(28);
+        artistaActualizado.setSexo("Masculino");
+        artistaActualizado.setGenero("Rap");
+ 
+        when(artistaService.updateArtista(artistaActualizado)).thenReturn(artistaActualizado);
+ 
+        var respuesta = artistaController.updateArtista(1, artistaActualizado);
+ 
+        assertNotNull(respuesta);
+        assertEquals(HttpStatus.OK, respuesta.getStatusCode());
+ 
+        var body = respuesta.getBody();
+        assertNotNull(body);
+        assertEquals("Rap", body.getGenero());
+        assertEquals(28, body.getEdad());
+    }
+ 
+    @Test
+    void eliminarArtista_retorna204_cuandoExiste() {
+ 
+        Artista artista = new Artista();
+        artista.setId(1);
+        artista.setNombre("Duki");
+        artista.setEdad(27);
+        artista.setSexo("Masculino");
+        artista.setGenero("Trap");
+ 
+        when(artistaService.getArtistaId(1)).thenReturn(artista);
+ 
+        var respuesta = artistaController.deleteArtista(1);
+ 
+        assertNotNull(respuesta);
+        assertEquals(HttpStatus.NO_CONTENT, respuesta.getStatusCode());
+        assertNull(respuesta.getBody());
+    }
 }

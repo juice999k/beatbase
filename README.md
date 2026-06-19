@@ -151,6 +151,49 @@ Para vincular correctamente las entidades, seguir este orden:
 
 ---
 
+## Swagger / OpenAPI
+
+Swagger UI permite visualizar y probar la API desde el navegador.
+
+### Dependencia necesaria en `pom.xml`
+
+```xml
+<dependency>
+  <groupId>org.springdoc</groupId>
+  <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+  <version>2.8.9</version>
+</dependency>
+```
+
+### Qué hay que permitir en Security
+
+Para que Swagger se pueda abrir sin JWT, hay que dejar públicas estas rutas en `SecurityConfig`:
+
+```java
+.requestMatchers(
+  "/swagger-ui/**",
+  "/swagger-ui.html",
+  "/v3/api-docs/**"
+).permitAll()
+```
+
+Eso permite entrar a la documentación sin autenticarse primero.
+
+### URL de acceso
+
+```text
+http://localhost:8080/swagger-ui/index.html
+```
+
+### Qué aporta Swagger en este proyecto
+
+1. Lista automáticamente los endpoints disponibles.
+2. Permite probar requests desde el navegador.
+3. Muestra los modelos y códigos HTTP.
+
+---
+
+
 ## Endpoints disponibles
 
 El proyecto expone los siguientes endpoints. Las peticiones `POST` y `PUT` requieren enviar un JSON en el cuerpo de la solicitud.
